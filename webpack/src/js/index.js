@@ -1,4 +1,5 @@
 import '../css/main.css';
+import 'bootstrap/dist/css/bootstrap.css'
 import $ from 'jquery';
 
 $(function() {

@@ -46,3 +46,9 @@ loaders have order, they are executed from back to front<br/>
 * **autoprofixer**: tell postcss-loaders which to add/not add (>= 5%)
 `npx autoprefixer --info`: Show target browsers and used prefixes<br/>
 "browerselist" in package.json
+
+## file-loader && url-loader
+* **file-loader**: options -> outputPath & publicPath
+* **url-loader**: images smaller than limit will be stored as base64 in css directly
+Usually use url-loader for some small things like: small icons....<br/>
+url-loader cannot be used without file-loader, as it uses file-loader when greater than limit

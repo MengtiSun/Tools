@@ -1,6 +1,14 @@
 .box {
-  width: 200px;
-  height: 200px;
-  background: gold;
-  transform: rotate(90deg);
+  /* width: 200px;
+  height: 200px; */
+  /* background: gold;
+  transform: rotate(90deg); */
+  width: 360px;
+  height: 140px;
+  background: url(../imgs/webpack.png) no-repeat;
+}
+
+.my-dialog {
+  width: 400px;
+  margin: 100px;
 }

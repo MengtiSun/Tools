@@ -26,6 +26,37 @@ module.exports= {
                 }
               }
             ]
+      }, 
+      // {
+      //   test: /\.(jpg|png|gif)$/i,
+      //   use: {
+      //     loader: 'file-loader',
+      //     options: {
+      //       outputPath: 'imgs/',   // relative to output.path
+      //       publicPath: 'dest/imgs/',  // tell css the path
+      //     }
+      //   }
+      // },
+      {
+        test: /\.(jpg|png|gif)$/i,
+        use: {
+          loader: 'url-loader',
+          options: {
+            outputPath: 'imgs/',   // relative to output.path
+            publicPath: 'dest/imgs/',  // tell css the path
+            limit: 8*1024,         // files smaller than this will be in base64 in
+          }
+        }
+      }, {
+        test: /\.(eot|svg|ttf|woff|woff2)$/i,
+        use: {
+          loader: 'url-loader',
+          options: {
+            outputPath: 'fonts/',   // relative to output.path
+            publicPath: 'dest/fonts/',  // tell css the path
+            limit: 4*1024,         // files smaller than this will be in base64 in
+          }
+        }
       }
     ]
   },
