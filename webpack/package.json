@@ -10,8 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^9.7.3",
     "css-loader": "^3.4.0",
     "jquery": "^3.4.1",
+    "postcss-loader": "^3.0.0",
     "style-loader": "^1.1.1"
-  }
+  },
+  "browerselist": [
+    "last 1 version",
+    "> 1%"
+  ]
 }

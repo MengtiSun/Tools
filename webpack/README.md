@@ -40,3 +40,9 @@ loaders have order, they are executed from back to front<br/>
 `use: ['style-loader', 'css-loader']`: first css-loader, then style-loader<br/>
 * **css-loader**: read and parse css (no compile errors) and put into bundle<br/>
 * **style-loader**: get the result of css-loader, put result into <style> tag
+
+## postcss-loader && autoprofixer
+* **postcss-loader**: add browser prefix 
+* **autoprofixer**: tell postcss-loaders which to add/not add (>= 5%)
+`npx autoprefixer --info`: Show target browsers and used prefixes<br/>
+"browerselist" in package.json
