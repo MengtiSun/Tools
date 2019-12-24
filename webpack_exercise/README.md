@@ -89,4 +89,5 @@ OR<br/>
 `"eslint_init": "eslint --init"` in package.json
 
 # Testing
-`npm i jest jest-webpack`
+`npm i jest jest-webpack`<br/>
+`"test_jest": "jest"`
