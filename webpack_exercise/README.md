@@ -80,3 +80,13 @@ env can be passed by `webpack --env.production`
 ## Handle HTML
 * **html-webpack-plugin**: auto generate HTML file under /dest
 This can use your index.html file as the template
+
+# eslint
+## eslint
+`npm i eslint eslint-loader`
+`node node_modules/eslint/bin/eslint.js --init`: init eslint<br/>
+OR<br/>
+`"eslint_init": "eslint --init"` in package.json
+
+# Testing
+`npm i jest jest-webpack`
