@@ -1,84 +1,141 @@
-const path = require('path');
-
-module.exports= {
-  // mode can be omitted, but will get warning
-  mode: 'development',
-  // SPA
-  entry: './src/js/index.js',
-  // output has to be an object
-  output: {
-    path: path.resolve(__dirname, 'dest'),
-    filename: 'bundle.min.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 
-              'css-loader', 
-              // 'postcss-loader'
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: [
-                    require('autoprefixer')
-                  ]
+module.exports = function (env, argv) {
+  env = env || {development: true};
+  return {
+    entry: './src/js/index.js',
+    ...env.production? require('./config/webpack.production'):
+      require('./config/webpack.development'),
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 
+                'css-loader', 
+                // 'postcss-loader'
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: [
+                      require('autoprefixer')
+                    ]
+                  }
                 }
-              }
-            ]
-      }, 
-      // {
-      //   test: /\.(jpg|png|gif)$/i,
-      //   use: {
-      //     loader: 'file-loader',
-      //     options: {
-      //       outputPath: 'imgs/',   // relative to output.path
-      //       publicPath: 'dest/imgs/',  // tell css the path
-      //     }
-      //   }
-      // },
-      {
-        test: /\.(jpg|png|gif)$/i,
-        use: {
-          loader: 'url-loader',
-          options: {
-            outputPath: 'imgs/',   // relative to output.path
-            publicPath: 'dest/imgs/',  // tell css the path
-            limit: 8*1024,         // files smaller than this will be in base64 in
+              ]
+        }, 
+        {
+          test: /\.(jpg|png|gif)$/i,
+          use: {
+            loader: 'url-loader',
+            options: {
+              outputPath: 'imgs/',   // relative to output.path
+              limit: 1*1024,         // files smaller than this will be in base64 in
+            }
+          }
+        }, {
+          test: /\.(eot|svg|ttf|woff|woff2)$/i,
+          use: {
+            loader: 'url-loader',
+            options: {
+              outputPath: 'fonts/',   // relative to output.path
+              limit: 4*1024,         // files smaller than this will be in base64 in
+            }
+          }
+        }, {
+          test: /\.less$/i,
+          use: ['style-loader', 'css-loader', 'less-loader']
+        }, {
+          test: /\.(js|jsx)$/i,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
           }
         }
-      }, {
-        test: /\.(eot|svg|ttf|woff|woff2)$/i,
-        use: {
-          loader: 'url-loader',
-          options: {
-            outputPath: 'fonts/',   // relative to output.path
-            publicPath: 'dest/fonts/',  // tell css the path
-            limit: 4*1024,         // files smaller than this will be in base64 in
-          }
-        }
-      }, {
-        test: /\.less$/i,
-        use: ['style-loader', 'css-loader', 'less-loader']
-      }, {
-        test: /\.(js|jsx)$/i,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
-  },
-  devtool: 'source-map'
-  // MPA
-  // entry: {
-  //   index: './src/js/index.js',
-  //   news: './src/js/news.js',
-  // },
-  // output: {
-  //   path: path.resolve(__dirname, 'dest'),
-  //   filename: '[name].bundle.min.js'
-  // }
-};
+      ]
+    },
+    devtool: 'source-map'
+  }
+}
+
+// module.exports= {
+//   // mode can be omitted, but will get warning
+//   mode: 'development',
+//   // SPA
+//   entry: './src/js/index.js',
+//   // output has to be an object
+//   output: {
+//     path: path.resolve(__dirname, 'dest'),
+//     filename: 'bundle.min.js'
+//   },
+//   module: {
+//     rules: [
+//       {
+//         test: /\.css$/i,
+//         use: ['style-loader', 
+//               'css-loader', 
+//               // 'postcss-loader'
+//               {
+//                 loader: 'postcss-loader',
+//                 options: {
+//                   plugins: [
+//                     require('autoprefixer')
+//                   ]
+//                 }
+//               }
+//             ]
+//       }, 
+//       // {
+//       //   test: /\.(jpg|png|gif)$/i,
+//       //   use: {
+//       //     loader: 'file-loader',
+//       //     options: {
+//       //       outputPath: 'imgs/',   // relative to output.path
+//       //       publicPath: 'dest/imgs/',  // tell css the path
+//       //     }
+//       //   }
+//       // },
+//       {
+//         test: /\.(jpg|png|gif)$/i,
+//         use: {
+//           loader: 'url-loader',
+//           options: {
+//             outputPath: 'imgs/',   // relative to output.path
+//             //publicPath: '/imgs/',  // tell css the path
+//             limit: 1*1024,         // files smaller than this will be in base64 in
+//           }
+//         }
+//       }, {
+//         test: /\.(eot|svg|ttf|woff|woff2)$/i,
+//         use: {
+//           loader: 'url-loader',
+//           options: {
+//             outputPath: 'fonts/',   // relative to output.path
+//             //publicPath: '/fonts/',  // tell css the path
+//             limit: 4*1024,         // files smaller than this will be in base64 in
+//           }
+//         }
+//       }, {
+//         test: /\.less$/i,
+//         use: ['style-loader', 'css-loader', 'less-loader']
+//       }, {
+//         test: /\.(js|jsx)$/i,
+//         use: {
+//           loader: 'babel-loader',
+//           options: {
+//             presets: ['@babel/preset-env']
+//           }
+//         }
+//       }
+//     ]
+//   },
+//   devtool: 'source-map'
+//   // MPA
+//   // entry: {
+//   //   index: './src/js/index.js',
+//   //   news: './src/js/news.js',
+//   // },
+//   // output: {
+//   //   path: path.resolve(__dirname, 'dest'),
+//   //   filename: '[name].bundle.min.js'
+//   // }
+// };

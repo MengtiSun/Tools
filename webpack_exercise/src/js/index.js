@@ -1,6 +1,6 @@
 import '../less/1.less';
 
-// import '../css/main.css';
+import '../css/main.css';
 // import 'bootstrap/dist/css/bootstrap.css'
 // import $ from 'jquery';
 

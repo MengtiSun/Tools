@@ -53,7 +53,7 @@ loaders have order, they are executed from back to front<br/>
 Usually use url-loader for some small things like: small icons....<br/>
 url-loader cannot be used without file-loader, as it uses file-loader when greater than limit
 
-## less-loader && less
+## less-loader && babel-loader
 npm i less-loader less<br/>
 npm i babel-loader @babel/core @babel/preset-env<br/>
 `devtool: 'source-map'`
@@ -63,3 +63,20 @@ npm i babel-loader @babel/core @babel/preset-env<br/>
 * **webpack**: core
 * **webpack-cli**: command line
 * **webpack-dev-server**: server
+Have to put `"start": "webpack-dev-server"` into package.json. Cannot run `webpack-dev-server` directly, because it is webpack-cli that run webpack-dev-server<br/>
+
+If webpack.config.js is updated, you need to restart the dev-server<br/>
+
+dev-server will not put compiled files into folders like /dest, but put them into memory, so bundle.js in under http://localhost:8080/bundle.min.js<br/>
+And you cannot use /dest for file reference, remove /dest<br/>
+Putting the compiled files into memory will make the hot update fast, much faster than reading and writing to disk<br/>
+
+If you want to have production compilation, you need: `"build": "xxx"`<br/>
+So that is why we need separate config for dev and production<br/>
+
+`module.exports = function (env, argv) {}`<br/>
+env can be passed by `webpack --env.production`
+
+## Handle HTML
+* **html-webpack-plugin**: auto generate HTML file under /dest
+This can use your index.html file as the template
