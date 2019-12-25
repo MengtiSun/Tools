@@ -7,7 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --env.development --open",
+    "build": "webpack --env.production",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -38,7 +40,17 @@
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.0.1"
   },
+  "browerselist": [
+    ">0.5%",
+    "last 1 version",
+    "not dead"
+  ],
   "stylelint": {
     "extends": "stylelint-config-standard"
+  },
+  "jest": {
+    "roots": [
+      "./tests/"
+    ]
   }
 }
